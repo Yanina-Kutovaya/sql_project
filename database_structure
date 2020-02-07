@@ -28,7 +28,7 @@ ALTER TABLE destinations
       REFERENCES countries(id)
         ON DELETE SET NULL
           ON UPDATE CASCADE;
-         
+      
           
 -- 1. Stays
 
@@ -40,7 +40,7 @@ CREATE TABLE stays_property_types (
   name VARCHAR(120) NOT NULL UNIQUE
  );
 
--- chain (Hilton Hotels & Resorts, Kempinski, Labranda Hotels, Marriott Hotels & Resorts, Mövenpick, etc) 
+-- chain (Hilton Hotels & Resorts, Kempinski, Labranda Hotels, Marriott Hotels & Resorts, Mövenpick, etc.)
 DROP TABLE IF EXISTS stays_property_chains;
 CREATE TABLE stays_property_chains (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -78,11 +78,12 @@ ALTER TABLE property_locations
       REFERENCES destinations(id)
         ON DELETE SET NULL
           ON UPDATE CASCADE;
- 
+  
 -- stays 
 DROP TABLE IF EXISTS stays;
 CREATE TABLE stays (
-  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,  
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  property_type_id INT UNSIGNED,
   chain_id INT UNSIGNED,
   star_rating_id INT UNSIGNED,
   review_score_id INT UNSIGNED,
@@ -93,6 +94,11 @@ ALTER TABLE stays
   ADD CONSTRAINT stays_id_fk
     FOREIGN KEY (id)
       REFERENCES property_locations(id)
+        ON DELETE CASCADE
+          ON UPDATE CASCADE,
+  ADD CONSTRAINT stays_property_type_id_fk
+    FOREIGN KEY (property_type_id)
+      REFERENCES stays_property_types(id)
         ON DELETE CASCADE
           ON UPDATE CASCADE,
   ADD CONSTRAINT stays_chain_id_fk
@@ -169,9 +175,9 @@ ALTER TABLE stays_orders
         ON DELETE SET NULL
           ON UPDATE CASCADE;
 
-CREATE INDEX stays_orders_check_in_at_check_out_at_idx ON stays_orders(check_in_at, check_out_at);
+CREATE INDEX stays_orders_check_in_at_check_out_at_idx ON stays_orders(check_in_at, check_out_at);         
+        
          
-          
 -- 2. Car rental 
 
 -- car_types (small_cars, medium_cars, large_cars, estate_cars, premium_cars, people_carriers, SUVs)
@@ -255,4 +261,4 @@ ALTER TABLE rental_orders
    
 
 CREATE INDEX rental_orders_rental_started_at_expired_at_idx 
-  ON rental_orders(rental_started_at, rental_expired_at);
+  ON rental_orders(rental_started_at, rental_expired_at); 
