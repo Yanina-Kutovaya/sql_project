@@ -54,8 +54,8 @@ CREATE TABLE star_rating (
   name VARCHAR(100) NOT NULL UNIQUE
  );
 
--- review_score (superb_9+, very good_8+, good_7+, pleasant_6+, no_rating)
-DROP TABLE IF EXISTS review_score;
+-- review_scores (superb_9+, very good_8+, good_7+, pleasant_6+, no_rating)
+DROP TABLE IF EXISTS review_scores;
 CREATE TABLE review_scores (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL UNIQUE
