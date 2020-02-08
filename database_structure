@@ -261,4 +261,4 @@ ALTER TABLE rental_orders
    
 
 CREATE INDEX rental_orders_rental_started_at_expired_at_idx 
-  ON rental_orders(rental_started_at, rental_expired_at); 
+  ON rental_orders(rental_started_at, rental_expired_at);
