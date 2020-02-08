@@ -1,4 +1,5 @@
 -- Cкрипт наполнения БД данными.
+-- http://filldb.info/dummy/step1
 
 DROP DATABASE IF EXISTS booking_com;
 CREATE DATABASE booking_com;
@@ -95,11 +96,11 @@ CREATE TABLE `countries` (
   PRIMARY KEY (`id`,`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `countries` (`id`, `name`) VALUES (1, 'perspiciatis');
-INSERT INTO `countries` (`id`, `name`) VALUES (2, 'dignissimos');
-INSERT INTO `countries` (`id`, `name`) VALUES (3, 'odit');
-INSERT INTO `countries` (`id`, `name`) VALUES (4, 'est');
-INSERT INTO `countries` (`id`, `name`) VALUES (5, 'nihil');
+INSERT INTO `countries` (`id`, `name`) VALUES (1, 'Greece');
+INSERT INTO `countries` (`id`, `name`) VALUES (2, 'USA');
+INSERT INTO `countries` (`id`, `name`) VALUES (3, 'Italy');
+INSERT INTO `countries` (`id`, `name`) VALUES (4, 'China');
+INSERT INTO `countries` (`id`, `name`) VALUES (5, 'France');
 
 
 #
@@ -1456,11 +1457,11 @@ CREATE TABLE `star_rating` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `star_rating` (`id`, `name`) VALUES (2, '3_stars');
+INSERT INTO `star_rating` (`id`, `name`) VALUES (3, '3_stars');
 INSERT INTO `star_rating` (`id`, `name`) VALUES (5, 'unrated');
-INSERT INTO `star_rating` (`id`, `name`) VALUES (3, '4_stars');
-INSERT INTO `star_rating` (`id`, `name`) VALUES (4, '5_stars');
-INSERT INTO `star_rating` (`id`, `name`) VALUES (1, '2_stars');
+INSERT INTO `star_rating` (`id`, `name`) VALUES (2, '4_stars');
+INSERT INTO `star_rating` (`id`, `name`) VALUES (1, '5_stars');
+INSERT INTO `star_rating` (`id`, `name`) VALUES (4, '2_stars');
 
 
 
