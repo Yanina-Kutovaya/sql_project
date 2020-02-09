@@ -6,7 +6,7 @@ Oбщее текстовое описание БД и решаемых ею за
 
 Для объектов проживания фиксируется:
 - тип - таблица stays_property_types: apartments, resorts, villas, cabins, cottages,..и т.п.
-- принадлежность к сетм отельеров - - таблица chain: Hilton Hotels & Resorts, Kempinski, Marriott Hotels & Resorts, ... и т.п.
+- принадлежность к сетям отельеров - - таблица chain: Hilton Hotels & Resorts, Kempinski, Marriott Hotels & Resorts, ... и т.п.
 - число звезд - таблица star_rating: 5_stars, 4_stars, 3_stars, 2_stars, unrated
 - отзывы госте - таблица review_score: superb_9+, very good_8+, good_7+, pleasant_6+, no_rating
 Эта информаци объединяется в таблице stays.
