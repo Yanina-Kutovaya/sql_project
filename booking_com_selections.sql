@@ -13,9 +13,12 @@ CREATE VIEW sales_per_stays_property (stays_id, last_week_sales) AS
       JOIN (
          SELECT stays_pricelist_id, SUM(
            IF(check_in_at < NOW() - INTERVAL 7 DAY AND check_out_at >= NOW(), 7, 
-           IF(check_in_at < NOW() - INTERVAL 7 DAY AND check_out_at BETWEEN NOW() - INTERVAL 7 DAY AND NOW(), DATEDIFF(check_out_at, NOW()) + 7,
-           IF(check_in_at BETWEEN NOW() - INTERVAL 7 DAY AND NOW() AND check_out_at >= NOW(), DATEDIFF(NOW(), check_in_at), 
-           IF(check_in_at BETWEEN NOW() - INTERVAL 7 DAY AND NOW() AND check_out_at BETWEEN NOW() - INTERVAL 7 DAY AND NOW(), DATEDIFF(check_out_at, check_in_at), 0)                    
+           IF(check_in_at < NOW() - INTERVAL 7 DAY AND check_out_at BETWEEN NOW() - INTERVAL 7 DAY AND NOW(), 
+             DATEDIFF(check_out_at, NOW()) + 7,
+           IF(check_in_at BETWEEN NOW() - INTERVAL 7 DAY AND NOW() AND check_out_at >= NOW(), 
+             DATEDIFF(NOW(), check_in_at), 
+           IF(check_in_at BETWEEN NOW() - INTERVAL 7 DAY AND NOW() AND check_out_at BETWEEN NOW() - INTERVAL 7 DAY AND NOW(), 
+             DATEDIFF(check_out_at, check_in_at), 0)                    
              )))
             ) AS days 
             FROM stays_orders
@@ -63,9 +66,8 @@ SELECT DISTINCT ch.name,
   
   
   
- -- 4. Оконные функции. Доли различных форматов недвижимости на турестическом рынке, 
- --    лидер продаж каждого формата, доля лидера в продажах каждого формата 
- --    (по данным о выручке  от проживани туристов за последнюю неделю)
+ -- 4. Оконные функции. Доли различных форматов недвижимости на турестическом рынке, лидер продаж каждого формата, 
+ --    доля лидера в продажах каждого формата (по данным о выручке  от проживани туристов за последнюю неделю).
   
 SELECT DISTINCT pt.name AS 'format name', 
   FIRST_VALUE (pl.name) OVER w1 AS 'top location name',
@@ -90,9 +92,8 @@ SELECT DISTINCT pt.name AS 'format name',
   
   
   
- -- 5. Оконные функции. Доли недвижимости на турестическом рынке исходя из количества звезд, 
- --    лидер продаж каждого сегмента, доля лидера в продажах каждого сегмента
- --    (по данным о выручке  от проживани туристов за последнюю неделю)
+ -- 5. Оконные функции. Доли недвижимости на турестическом рынке исходя из количества звезд, лидер продаж каждого сегмента, 
+ --    доля лидера в продажах каждого сегмента (по данным о выручке  от проживани туристов за последнюю неделю)
   
 SELECT DISTINCT sr.name AS 'star rating', 
   FIRST_VALUE (pl.name) OVER w1 AS 'top location name',
@@ -116,9 +117,8 @@ SELECT DISTINCT sr.name AS 'star rating',
   
   
   
-  -- 6. Оконные функции. 5 мест с наиболее развитой туристической инфраструктурой 
-  --    (самым большим числом объетов недвижимости для проживания). Выведены объекты,
-  --    получившие лучшие отзывы гостей в разрезе каждого туристического центра.
+  -- 6. Оконные функции. 5 мест с наиболее развитой туристической инфраструктурой (самым большим числом объетов недвижимости 
+  --    для проживания). Выведены объекты, получившие лучшие отзывы гостей в разрезе каждого туристического центра.
   
 SELECT DISTINCT d.name AS 'destination name', c.name AS 'country',
   COUNT(pl.id) OVER w1 AS location_num,
