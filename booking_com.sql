@@ -50,7 +50,7 @@ CREATE TABLE stays_property_chains (
   name VARCHAR(120) NOT NULL UNIQUE
  );
 
--- star_rating (2_stars, 3_stars, 4_stars, 5_stars, unrated)
+-- star_rating (5_stars, 4_stars, 3_stars, 2_stars, unrated)
 DROP TABLE IF EXISTS star_rating;
 CREATE TABLE star_rating (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
