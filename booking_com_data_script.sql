@@ -5,6 +5,7 @@ DROP DATABASE IF EXISTS booking_com;
 CREATE DATABASE booking_com;
 USE booking_com;
 
+#
 # TABLE STRUCTURE FOR: car_models
 #
 
@@ -15,9 +16,7 @@ CREATE TABLE `car_models` (
   `car_type_id` int(10) unsigned DEFAULT NULL,
   `car_model` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `car_model` (`car_model`),
-  KEY `car_models_car_type_id_fk` (`car_type_id`)
-  
+  UNIQUE KEY `car_model` (`car_model`)
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `car_models` (`id`, `car_type_id`, `car_model`) VALUES (1, 1, 'Omnis autem voluptate vel mollitia voluptas.');
@@ -115,8 +114,7 @@ CREATE TABLE `destinations` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`),
-  KEY `destinations_country_id_fk` (`country_id`)  
+  PRIMARY KEY (`id`)  
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `destinations` (`id`, `country_id`, `name`, `created_at`, `updated_at`) VALUES (1, 1, 'itaque', '1978-05-30 19:00:56', '2019-01-27 22:16:05');
@@ -215,8 +213,7 @@ CREATE TABLE `property_locations` (
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `address` (`address`),
-  KEY `property_locations_destination_id_fk` (`destination_id`)  
+  UNIQUE KEY `address` (`address`) 
 ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `property_locations` (`id`, `destination_id`, `name`, `address`, `created_at`, `updated_at`) VALUES (1, 1, 'non', '8620 Hermann Courts\nAdamsburgh, MN 14821', '1993-05-16 05:36:55', '2019-08-08 17:21:34');
@@ -2525,8 +2522,7 @@ UPDATE stays_pricelist SET
   lodging_type_id = FLOOR(1+RAND()*25),
   meal_type_id = FLOOR(1+RAND()*5),
   price = FLOOR(200+ RAND() * 1800),
-  rooms_available = FLOOR(1+RAND()*10);
- 
+  rooms_available = FLOOR(1+RAND()*10); 
 
 UPDATE stays_orders SET 
   stays_pricelist_id = FLOOR(1+RAND()*350),
