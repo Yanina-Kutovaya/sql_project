@@ -29,7 +29,6 @@ ALTER TABLE destinations
         ON DELETE SET NULL
           ON UPDATE CASCADE;
 
-         
           
 -- 1. Stays 
 
@@ -56,7 +55,6 @@ CREATE TABLE star_rating (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL UNIQUE
  );
-
 
 -- review_score (superb_9+, very good_8+, good_7+, pleasant_6+, no_rating)
 DROP TABLE IF EXISTS review_scores;
@@ -185,7 +183,6 @@ ALTER TABLE stays_orders
 CREATE INDEX stays_orders_check_in_at_check_out_at_idx ON stays_orders(check_in_at, check_out_at);
          
 
-
 -- 2. Car rental
 
 -- car_types (small_cars, medium_cars, large_cars, estate_cars, premium_cars, people_carriers, SUVs)
@@ -271,10 +268,3 @@ ALTER TABLE rental_orders
 
 CREATE INDEX rental_orders_rental_started_at_expired_at_idx 
   ON rental_orders(rental_started_at, rental_expired_at);
- 
- 
-
-
-
-
-
